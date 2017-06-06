@@ -7,7 +7,7 @@ class SocialiteProvider
 {
     public static function getSocialiteProvider()
     {
-        return 'github';
+        return 'google';
     }
 
 }

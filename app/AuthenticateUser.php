@@ -68,7 +68,16 @@ class AuthenticateUser
      */
     private function getSocialUser()
     {
-        return $this->socialite->driver($this->socialiteProvider::getSocialiteProvider())->user();
+        $user = $this->socialite->driver($this->socialiteProvider::getSocialiteProvider())->user();
+//        dd($user);
+
+        if (empty($user->user['domain']) || $user->user['domain'] !== 'rategenius.com')
+        {
+            // route back to the login page with a 'please use a RateGenius email address' message.
+            dd("{$user->getEmail()} is not a RateGenius email address...");
+        }
+
+        return $user;
     }
 
 }
